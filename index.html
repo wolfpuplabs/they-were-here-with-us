@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>They Were Here With Us | AR NFC Adoption Cards</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
@@ -101,32 +102,34 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div class="flex flex-col items-center">
                     <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                        <!-- Icon 1 -->
                         <i class="fa-solid fa-hand-holding-heart text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">1. Adopt</h3>
-                    <p class="text-gray-400">Purchase a physical NFC-enabled card representing a specific endangered species. Your fund goes directly to conservation efforts.</p>
+                    <p class="text-gray-400">Purchase a physical NFC-enabled card representing a specific endangered species. 100% of profits go to global wildlife sanctuaries.</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
-                        <i class="fa-solid fa-mobile-screen text-4xl text-accent"></i>
+                        <!-- Icon 2 Fixed (changed from fa-mobile-screen to fa-mobile-alt) -->
+                        <i class="fa-solid fa-mobile-alt text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">2. Scan</h3>
-                    <p class="text-gray-400">Tap the premium card to your smartphone. Our app authenticates your unique adoption serial number instantly.</p>
+                    <p class="text-gray-400">Tap the premium metal/bamboo card to your smartphone. Our app instantly authenticates your unique adoption serial number.</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
-                        <i class="fa-solid fa-vr-cardboard text-4xl text-accent"></i>
+                        <!-- Icon 3 Fixed (changed from fa-vr-cardboard/shield-cat to fa-shield-alt) -->
+                        <i class="fa-solid fa-shield-alt text-4xl text-accent"></i>
                     </div>
-                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">3. Connect</h3>
-                    <p class="text-gray-400">Experience the animal in stunning Augmented Reality. Read live data, fun facts, and track their real-world conservation status.</p>
+                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">3. Protect</h3>
+                    <p class="text-gray-400">Experience the animal in stunning Augmented Reality right in your room. Track their real-world conservation status and learn how to help.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Collection & AR Preview Section (UPDATED) -->
+    <!-- Collection & AR Preview Section -->
     <section id="collection" class="py-24 bg-black/50 relative">
-        <!-- Decor background -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
