@@ -12,55 +12,89 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0B130D; /* Very dark forest green */
+            background-color: #0B130D;
             color: #F3F4F6;
+            overflow-x: hidden; /* Prevent horizontal scroll from particle FX */
         }
         
         h1, h2, h3, .font-oswald {
             font-family: 'Oswald', sans-serif;
         }
 
-        .text-accent {
-            color: #A3E681; /* Light leaf green */
-        }
-        .bg-accent {
-            background-color: #A3E681;
-        }
-        .bg-dark-green {
-            background-color: #112415;
-        }
+        .text-accent { color: #A3E681; }
+        .bg-accent { background-color: #A3E681; }
+        .bg-dark-green { background-color: #112415; }
 
         /* Custom Scrollbar for AR facts */
-        .ar-scroll::-webkit-scrollbar {
-            width: 4px;
+        .ar-scroll::-webkit-scrollbar { width: 4px; }
+        .ar-scroll::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+        .ar-scroll::-webkit-scrollbar-thumb { background: #A3E681; border-radius: 10px; }
+
+        /* --- UI/UX FX STYLES --- */
+        
+        /* 1. Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        .ar-scroll::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .ar-scroll::-webkit-scrollbar-thumb {
-            background: #A3E681;
-            border-radius: 10px;
+        
+        /* Delay utility for staggered animations */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* 2. Floating Particles (Leaves) FX */
+        @keyframes float-down {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
+        .particle {
+            position: fixed;
+            top: 0;
+            pointer-events: none;
+            z-index: 0;
+            color: #1a3a21;
+            animation: float-down linear infinite;
+        }
+
+        /* 3. Button Pulse Glow FX */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(163,230,129,0.4); }
+            50% { box-shadow: 0 0 30px rgba(163,230,129,0.8); }
+        }
+        .btn-glow {
+            animation: pulse-glow 3s infinite;
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- FX: Background Floating Particles -->
+    <div id="particles-container"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-dark-green/90 backdrop-blur-md border-b border-gray-800">
+    <nav class="fixed w-full z-50 bg-dark-green/90 backdrop-blur-md border-b border-gray-800 transition-all duration-300 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
                     <!-- STRATEGIC LOGO PLACEMENT 1: NAVBAR -->
                     <img src="image_4.png" alt="They Were Here With Us Logo" class="h-12 w-12 rounded-full bg-white p-0.5 object-cover shadow-sm">
                     <span class="font-oswald text-xl font-bold tracking-wider leading-tight uppercase hidden sm:block">They Were<br>Here With Us</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-300 hover:text-accent transition">The Concept</a>
-                    <a href="#how-it-works" class="text-gray-300 hover:text-accent transition">How it Works</a>
-                    <a href="#collection" class="text-gray-300 hover:text-accent transition">AR Collection</a>
+                    <a href="#about" class="text-gray-300 hover:text-accent hover:-translate-y-0.5 transition-all duration-300">The Concept</a>
+                    <a href="#how-it-works" class="text-gray-300 hover:text-accent hover:-translate-y-0.5 transition-all duration-300">How it Works</a>
+                    <a href="#collection" class="text-gray-300 hover:text-accent hover:-translate-y-0.5 transition-all duration-300">AR Collection</a>
                 </div>
                 <div>
-                    <a href="#collection" class="bg-accent text-black font-bold py-2 px-6 rounded-full hover:bg-white transition shadow-lg hover:shadow-xl">
+                    <a href="#collection" class="bg-accent text-black font-bold py-2 px-6 rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                         Adopt Now
                     </a>
                 </div>
@@ -69,54 +103,55 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
         <div class="md:w-1/2 flex flex-col gap-6 text-center md:text-left">
-            <h1 class="text-6xl md:text-8xl font-bold font-oswald uppercase leading-none text-white shadow-sm">
+            <h1 class="text-6xl md:text-8xl font-bold font-oswald uppercase leading-none text-white shadow-sm reveal active">
                 They Were <br>
                 <span class="text-gray-300">Here With Us</span>
             </h1>
-            <h2 class="text-2xl md:text-3xl font-oswald text-accent uppercase tracking-wide">
+            <h2 class="text-2xl md:text-3xl font-oswald text-accent uppercase tracking-wide reveal delay-100 active">
                 Adopt. Scan. Connect. Protect.
             </h2>
-            <p class="text-lg md:text-xl text-gray-400 font-light max-w-lg mx-auto md:mx-0">
+            <p class="text-lg md:text-xl text-gray-400 font-light max-w-lg mx-auto md:mx-0 reveal delay-200 active">
                 An interactive NFC + AR adoption card that brings you closer to endangered animals while directly supporting their conservation.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-4 justify-center md:justify-start">
-                <a href="#collection" class="bg-accent text-black font-bold py-4 px-8 rounded-full text-lg hover:bg-white transition text-center shadow-[0_0_15px_rgba(163,230,129,0.4)]">
+            <div class="flex flex-col sm:flex-row gap-4 mt-4 justify-center md:justify-start reveal delay-300 active">
+                <a href="#collection" class="bg-accent text-black font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:scale-105 transition-all duration-300 text-center btn-glow">
                     Explore The Cards
                 </a>
-                <a href="#how-it-works" class="border-2 border-gray-500 text-white font-bold py-4 px-8 rounded-full text-lg hover:border-accent hover:text-accent transition text-center">
+                <a href="#how-it-works" class="border-2 border-gray-500 text-white font-bold py-4 px-8 rounded-full text-lg hover:border-accent hover:text-accent hover:bg-accent/10 transition-all duration-300 text-center">
                     Discover How
                 </a>
             </div>
         </div>
-        <div class="md:w-1/2 relative">
-            <div class="absolute inset-0 bg-accent/20 blur-[100px] rounded-full"></div>
-            <img src="image.png" alt="AR NFC Adoption Card" class="relative z-10 w-full h-auto rounded-2xl shadow-2xl border border-gray-700">
+        <div class="md:w-1/2 relative reveal delay-200 active group">
+            <!-- FX: Glow behind image -->
+            <div class="absolute inset-0 bg-accent/20 blur-[100px] rounded-full group-hover:bg-accent/30 transition-colors duration-700"></div>
+            <img src="image.png" alt="AR NFC Adoption Card" class="relative z-10 w-full h-auto rounded-2xl shadow-2xl border border-gray-700 group-hover:scale-[1.02] group-hover:border-accent/50 transition-all duration-500">
         </div>
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="py-20 bg-dark-green border-y border-gray-800">
+    <section id="how-it-works" class="py-20 bg-dark-green border-y border-gray-800 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-oswald font-bold mb-16 uppercase text-white">The Journey of Empathy</h2>
+            <h2 class="text-4xl font-oswald font-bold mb-16 uppercase text-white reveal">The Journey of Empathy</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                <div class="flex flex-col items-center reveal">
+                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30 hover:bg-accent/20 hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(163,230,129,0.1)]">
                         <i class="fa-solid fa-hand-holding-heart text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">1. Adopt</h3>
                     <p class="text-gray-400">Purchase a physical NFC-enabled card representing a specific endangered species. 100% of profits go to global wildlife sanctuaries.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                <div class="flex flex-col items-center reveal delay-100">
+                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30 hover:bg-accent/20 hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(163,230,129,0.1)]">
                         <i class="fa-solid fa-mobile-alt text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">2. Scan</h3>
                     <p class="text-gray-400">Tap the premium metal/bamboo card to your smartphone. Our app instantly authenticates your unique adoption serial number.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                <div class="flex flex-col items-center reveal delay-200">
+                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30 hover:bg-accent/20 hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(163,230,129,0.1)]">
                         <i class="fa-solid fa-shield-alt text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">3. Protect</h3>
@@ -127,11 +162,11 @@
     </section>
 
     <!-- Collection & AR Preview Section -->
-    <section id="collection" class="py-24 bg-black/50 relative">
+    <section id="collection" class="py-24 bg-black/50 relative z-10">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 reveal">
                 <h2 class="text-4xl md:text-5xl font-oswald font-bold uppercase mb-4 text-white">AR Experience Preview</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto text-lg">Scan the card and unlock their world. Each adoption grants you access to interactive AR facts just like the previews below. Choose your guardian.</p>
             </div>
@@ -139,9 +174,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
                 <!-- Card 1: Red Panda -->
-                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.2)] hover:-translate-y-2 transition-all duration-500 flex flex-col reveal delay-100">
                     <div class="relative h-64 bg-black overflow-hidden group">
-                        <video src="Red_panda_with_info_pop_202608111634.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <video src="Red_panda_with_info_pop_202608111634.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></video>
                         <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
                         </div>
@@ -151,24 +186,21 @@
                             <h3 class="text-2xl font-oswald font-bold uppercase text-white">Red Panda</h3>
                         </div>
                         <p class="text-xs text-red-400 font-medium mb-4 uppercase tracking-widest">Endangered</p>
-                        
-                        <!-- AR Info Box -->
-                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll group-hover:border-accent/30 transition-colors duration-300">
                             <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
                             <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
                                 <li>Possesses a "false thumb" (extended wrist bone) to grip bamboo.</li>
                                 <li>Despite being carnivores, 95% of their diet is bamboo.</li>
                             </ul>
                         </div>
-                        
                         <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
                     </div>
                 </div>
 
                 <!-- Card 2: Koala -->
-                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.2)] hover:-translate-y-2 transition-all duration-500 flex flex-col reveal delay-200">
                     <div class="relative h-64 bg-black overflow-hidden group">
-                        <video src="Koala_in_natural_habitat_202608111636.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <video src="Koala_in_natural_habitat_202608111636.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></video>
                         <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
                         </div>
@@ -178,24 +210,21 @@
                             <h3 class="text-2xl font-oswald font-bold uppercase text-white">Koala</h3>
                         </div>
                         <p class="text-xs text-yellow-500 font-medium mb-4 uppercase tracking-widest">Vulnerable</p>
-                        
-                        <!-- AR Info Box -->
-                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll group-hover:border-accent/30 transition-colors duration-300">
                             <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
                             <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
                                 <li>Known for their extremely low-energy diet.</li>
                                 <li>Can sleep for up to 20 hours every single day to conserve energy.</li>
                             </ul>
                         </div>
-                        
                         <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
                     </div>
                 </div>
 
                 <!-- Card 3: Javan Banteng -->
-                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.2)] hover:-translate-y-2 transition-all duration-500 flex flex-col reveal delay-300">
                     <div class="relative h-64 bg-black overflow-hidden group">
-                        <video src="Banteng_in_natural_habitat_202608111638.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <video src="Banteng_in_natural_habitat_202608111638.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></video>
                         <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
                         </div>
@@ -205,24 +234,21 @@
                             <h3 class="text-2xl font-oswald font-bold uppercase text-white">Javan Banteng</h3>
                         </div>
                         <p class="text-xs text-red-400 font-medium mb-4 uppercase tracking-widest">Endangered</p>
-                        
-                        <!-- AR Info Box -->
-                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll group-hover:border-accent/30 transition-colors duration-300">
                             <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
                             <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
                                 <li>Features distinct white "stockings" on their lower legs.</li>
                                 <li>The markings give them the appearance of wearing socks in the wild.</li>
                             </ul>
                         </div>
-                        
                         <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
                     </div>
                 </div>
 
                 <!-- Card 4: Komodo Dragon -->
-                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.2)] hover:-translate-y-2 transition-all duration-500 flex flex-col reveal delay-400">
                     <div class="relative h-64 bg-black overflow-hidden group">
-                        <video src="Komodo_dragon_in_habitat_202608111632.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <video src="Komodo_dragon_in_habitat_202608111632.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></video>
                         <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
                         </div>
@@ -232,16 +258,13 @@
                             <h3 class="text-2xl font-oswald font-bold uppercase text-white leading-none">Komodo<br>Dragon</h3>
                         </div>
                         <p class="text-xs text-red-400 font-medium mb-4 uppercase tracking-widest mt-1">Endangered</p>
-                        
-                        <!-- AR Info Box -->
-                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll group-hover:border-accent/30 transition-colors duration-300">
                             <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
                             <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
                                 <li>The largest living lizards on Earth (grows up to 10 feet).</li>
                                 <li>Incredible olfactory senses: can smell carrion up to 5 miles away.</li>
                             </ul>
                         </div>
-                        
                         <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
                     </div>
                 </div>
@@ -251,53 +274,157 @@
     </section>
 
     <!-- Vision & Impact Section -->
-    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16">
-        <div class="md:w-1/2 flex flex-col gap-6">
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16 relative z-10">
+        <div class="md:w-1/2 flex flex-col gap-6 reveal">
             <h2 class="text-5xl font-oswald font-bold uppercase text-accent mb-2">Impact & Vision</h2>
-            
             <p class="text-xl text-gray-300 font-light leading-relaxed border-l-4 border-accent pl-6">
                 We envision a world where technology creates empathy, and empathy drives action.
             </p>
-            
             <p class="text-lg text-gray-400 mt-4">
                 Every scan is a connection. Every adoption is a step toward saving their future. By bridging the digital and physical worlds, we are giving a voice to those who cannot speak for themselves. 
             </p>
-
             <h3 class="text-2xl font-oswald font-bold mt-8 uppercase tracking-wide text-white">
                 Together, let's protect<br>
                 <span class="text-gray-400">They Were Here With Us.</span>
             </h3>
         </div>
-        <div class="md:w-1/2 relative">
-            <div class="absolute inset-0 bg-orange-900/20 blur-[100px] rounded-full"></div>
-            <img src="image_2.png" alt="Impact and Vision" class="relative z-10 w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-700">
+        <div class="md:w-1/2 relative reveal delay-200 group">
+            <div class="absolute inset-0 bg-orange-900/20 blur-[100px] rounded-full group-hover:bg-orange-800/30 transition-colors duration-700"></div>
+            <img src="image_2.png" alt="Impact and Vision" class="relative z-10 w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-700 group-hover:scale-[1.02] transition-transform duration-500">
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black pt-16 pb-8 border-t border-gray-900">
+    <footer class="bg-black pt-16 pb-8 border-t border-gray-900 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
-                <div class="flex flex-col items-center md:items-start">
+                <div class="flex flex-col items-center md:items-start reveal">
                     <!-- STRATEGIC LOGO PLACEMENT 2: FOOTER -->
-                    <div class="flex items-center gap-3 mb-4">
+                    <div class="flex items-center gap-3 mb-4 cursor-pointer hover:opacity-80 transition-opacity">
                         <img src="image_4.png" alt="They Were Here With Us Logo" class="h-16 w-16 rounded-full bg-white p-1 object-cover">
                     </div>
                     <h2 class="font-oswald text-2xl font-bold uppercase tracking-widest text-center md:text-left text-gray-300">
                         They Were <br>Here With Us
                     </h2>
                 </div>
-                <div class="flex gap-6">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fa-brands fa-tiktok"></i></a>
+                <div class="flex gap-6 reveal delay-100">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black hover:-translate-y-1 transition-all duration-300"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black hover:-translate-y-1 transition-all duration-300"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black hover:-translate-y-1 transition-all duration-300"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
-            <div class="text-center text-gray-600 text-sm border-t border-gray-900 pt-8">
+            <div class="text-center text-gray-600 text-sm border-t border-gray-900 pt-8 reveal delay-200">
                 &copy; 2026 They Were Here With Us Conservation Project. All rights reserved. AR & NFC technology powered by empathetic humans.
             </div>
         </div>
     </footer>
 
+    <!-- SFX: Ambient Audio Element (Hidden) -->
+    <!-- Note: Using a reliable royalty-free ambient sound from internet archive. You can replace src with your own 'jungle_sfx.mp3' -->
+    <audio id="bg-audio" loop preload="auto">
+        <source src="https://ia800908.us.archive.org/30/items/jungle-ambience/Jungle%20Ambience.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SFX Toggle Button (Floating) -->
+    <button id="sfx-toggle" class="fixed bottom-6 right-6 z-[100] bg-dark-green border-2 border-accent text-accent w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(163,230,129,0.3)] hover:scale-110 hover:bg-accent hover:text-black transition-all duration-300 group">
+        <i id="sfx-icon" class="fa-solid fa-volume-mute text-xl group-hover:animate-pulse"></i>
+    </button>
+
+    <!-- UI/UX & SFX Logic (JavaScript) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. SCROLL REVEAL ANIMATION ---
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: stop observing once revealed
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => {
+                // Remove active class initially for proper triggering on reload
+                el.classList.remove('active');
+                revealObserver.observe(el);
+            });
+
+            // --- 2. FLOATING PARTICLES (LEAVES) FX ---
+            const particleContainer = document.getElementById('particles-container');
+            const particleCount = 20; // Number of leaves on screen
+
+            const createParticle = () => {
+                const particle = document.createElement('i');
+                // Randomly choose between leaf icons
+                const leafIcons = ['fa-leaf', 'fa-seedling'];
+                particle.className = `fa-solid ${leafIcons[Math.floor(Math.random() * leafIcons.length)]} particle`;
+                
+                // Random positioning and styling
+                const size = Math.random() * 1.5 + 0.5; // Size between 0.5rem and 2rem
+                particle.style.fontSize = `${size}rem`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Random animation duration between 10s and 25s
+                const duration = Math.random() * 15 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay so they don't all fall at once
+                const delay = Math.random() * 10;
+                particle.style.animationDelay = `${delay}s`;
+
+                particleContainer.appendChild(particle);
+
+                // Remove and recreate particle after animation ends to save DOM memory
+                setTimeout(() => {
+                    particle.remove();
+                    createParticle();
+                }, (duration + delay) * 1000);
+            };
+
+            // Initialize particles
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
+            }
+
+            // --- 3. AUDIO (SFX) TOGGLE LOGIC ---
+            const audio = document.getElementById('bg-audio');
+            const toggleBtn = document.getElementById('sfx-toggle');
+            const icon = document.getElementById('sfx-icon');
+            let isPlaying = false;
+
+            // Set volume lower so it's ambient, not overwhelming
+            audio.volume = 0.3;
+
+            toggleBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audio.pause();
+                    icon.classList.replace('fa-volume-up', 'fa-volume-mute');
+                    toggleBtn.classList.remove('bg-accent', 'text-black');
+                    toggleBtn.classList.add('bg-dark-green', 'text-accent');
+                } else {
+                    // Modern browsers return a promise on play()
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            icon.classList.replace('fa-volume-mute', 'fa-volume-up');
+                            toggleBtn.classList.add('bg-accent', 'text-black');
+                            toggleBtn.classList.remove('bg-dark-green', 'text-accent');
+                        }).catch(error => {
+                            console.log("Audio playback failed:", error);
+                            alert("Please interact with the page first to enable sound.");
+                        });
+                    }
+                }
+                isPlaying = !isPlaying;
+            });
+        });
+    </script>
 </body>
 </html>
