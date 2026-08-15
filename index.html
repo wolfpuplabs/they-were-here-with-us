@@ -28,6 +28,18 @@
         .bg-dark-green {
             background-color: #112415;
         }
+
+        /* Custom Scrollbar for AR facts */
+        .ar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .ar-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .ar-scroll::-webkit-scrollbar-thumb {
+            background: #A3E681;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -37,13 +49,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-elephant text-3xl text-accent"></i>
+                    <i class="fa-solid fa-leaf text-3xl text-accent"></i>
                     <span class="font-oswald text-xl font-bold tracking-wider leading-tight uppercase">They Were<br>Here With Us</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#about" class="text-gray-300 hover:text-accent transition">The Concept</a>
                     <a href="#how-it-works" class="text-gray-300 hover:text-accent transition">How it Works</a>
-                    <a href="#collection" class="text-gray-300 hover:text-accent transition">Cards Collection</a>
+                    <a href="#collection" class="text-gray-300 hover:text-accent transition">AR Collection</a>
                 </div>
                 <div>
                     <a href="#collection" class="bg-accent text-black font-bold py-2 px-6 rounded-full hover:bg-white transition shadow-lg hover:shadow-xl">
@@ -69,49 +81,170 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 mt-4 justify-center md:justify-start">
                 <a href="#collection" class="bg-accent text-black font-bold py-4 px-8 rounded-full text-lg hover:bg-white transition text-center shadow-[0_0_15px_rgba(163,230,129,0.4)]">
-                    Get Your Card
+                    Explore The Cards
                 </a>
                 <a href="#how-it-works" class="border-2 border-gray-500 text-white font-bold py-4 px-8 rounded-full text-lg hover:border-accent hover:text-accent transition text-center">
-                    Watch Demo
+                    Discover How
                 </a>
             </div>
         </div>
         <div class="md:w-1/2 relative">
             <div class="absolute inset-0 bg-accent/20 blur-[100px] rounded-full"></div>
-            <!-- Using the referenced image 1 -->
-            <img src="image.png" alt="AR NFC Adoption Card with Red Panda" class="relative z-10 w-full h-auto rounded-2xl shadow-2xl border border-gray-700">
+            <img src="image.png" alt="AR NFC Adoption Card" class="relative z-10 w-full h-auto rounded-2xl shadow-2xl border border-gray-700">
         </div>
     </section>
 
-    <!-- How It Works (Improvised based on icons) -->
+    <!-- How It Works -->
     <section id="how-it-works" class="py-20 bg-dark-green border-y border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-oswald font-bold mb-16 uppercase text-white">The Journey of Empathy</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <!-- Step 1 -->
                 <div class="flex flex-col items-center">
                     <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
                         <i class="fa-solid fa-hand-holding-heart text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">1. Adopt</h3>
-                    <p class="text-gray-400">Purchase a physical NFC-enabled card representing a specific endangered species. 100% of profits go to global wildlife sanctuaries.</p>
+                    <p class="text-gray-400">Purchase a physical NFC-enabled card representing a specific endangered species. Your fund goes directly to conservation efforts.</p>
                 </div>
-                <!-- Step 2 -->
                 <div class="flex flex-col items-center">
                     <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
                         <i class="fa-solid fa-mobile-screen text-4xl text-accent"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">2. Scan</h3>
-                    <p class="text-gray-400">Tap the premium metal/bamboo card to your smartphone. Our app instantly authenticates your unique adoption serial number.</p>
+                    <p class="text-gray-400">Tap the premium card to your smartphone. Our app authenticates your unique adoption serial number instantly.</p>
                 </div>
-                <!-- Step 3 -->
                 <div class="flex flex-col items-center">
                     <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
-                        <i class="fa-solid fa-shield-cat text-4xl text-accent"></i>
+                        <i class="fa-solid fa-vr-cardboard text-4xl text-accent"></i>
                     </div>
-                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">3. Protect</h3>
-                    <p class="text-gray-400">Experience the animal in stunning Augmented Reality right in your room. Track their real-world conservation status and learn how to help.</p>
+                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">3. Connect</h3>
+                    <p class="text-gray-400">Experience the animal in stunning Augmented Reality. Read live data, fun facts, and track their real-world conservation status.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection & AR Preview Section (UPDATED) -->
+    <section id="collection" class="py-24 bg-black/50 relative">
+        <!-- Decor background -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-accent/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-oswald font-bold uppercase mb-4 text-white">AR Experience Preview</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Scan the card and unlock their world. Each adoption grants you access to interactive AR facts just like the previews below. Choose your guardian.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1: Red Panda -->
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                    <div class="relative h-64 bg-black overflow-hidden group">
+                        <video src="Red_panda_with_info_pop_202608111634.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-oswald font-bold uppercase text-white">Red Panda</h3>
+                        </div>
+                        <p class="text-xs text-red-400 font-medium mb-4 uppercase tracking-widest">Endangered</p>
+                        
+                        <!-- AR Info Box -->
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                            <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
+                            <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
+                                <li>Possesses a "false thumb" (extended wrist bone) to grip bamboo.</li>
+                                <li>Despite being carnivores, 95% of their diet is bamboo.</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Koala -->
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                    <div class="relative h-64 bg-black overflow-hidden group">
+                        <video src="Koala_in_natural_habitat_202608111636.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-oswald font-bold uppercase text-white">Koala</h3>
+                        </div>
+                        <p class="text-xs text-yellow-500 font-medium mb-4 uppercase tracking-widest">Vulnerable</p>
+                        
+                        <!-- AR Info Box -->
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                            <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
+                            <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
+                                <li>Known for their extremely low-energy diet.</li>
+                                <li>Can sleep for up to 20 hours every single day to conserve energy.</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Javan Banteng -->
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                    <div class="relative h-64 bg-black overflow-hidden group">
+                        <video src="Banteng_in_natural_habitat_202608111638.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-oswald font-bold uppercase text-white">Javan Banteng</h3>
+                        </div>
+                        <p class="text-xs text-red-400 font-medium mb-4 uppercase tracking-widest">Endangered</p>
+                        
+                        <!-- AR Info Box -->
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                            <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
+                            <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
+                                <li>Features distinct white "stockings" on their lower legs.</li>
+                                <li>The markings give them the appearance of wearing socks in the wild.</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Komodo Dragon -->
+                <div class="bg-dark-green rounded-2xl overflow-hidden border border-gray-800 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(163,230,129,0.15)] transition-all duration-300 flex flex-col">
+                    <div class="relative h-64 bg-black overflow-hidden group">
+                        <video src="Komodo_dragon_in_habitat_202608111632.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"></video>
+                        <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-accent border border-accent/30 tracking-wider uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> AR Ready
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-oswald font-bold uppercase text-white leading-none">Komodo<br>Dragon</h3>
+                        </div>
+                        <p class="text-xs text-red-400 font-medium mb-4 uppercase tracking-widest mt-1">Endangered</p>
+                        
+                        <!-- AR Info Box -->
+                        <div class="bg-black/40 border border-gray-800 rounded-lg p-3 mb-6 flex-1 h-32 overflow-y-auto ar-scroll">
+                            <h4 class="text-xs text-accent font-bold mb-2 uppercase border-b border-gray-700 pb-1"><i class="fa-solid fa-database mr-1"></i> AR Scanned Data</h4>
+                            <ul class="text-sm text-gray-300 space-y-2 list-disc pl-4 marker:text-accent">
+                                <li>The largest living lizards on Earth (grows up to 10 feet).</li>
+                                <li>Incredible olfactory senses: can smell carrion up to 5 miles away.</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-gray-800 text-white hover:bg-accent hover:text-black font-bold rounded-lg transition-colors border border-gray-700 hover:border-accent">Adopt & Unlock Card</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -136,72 +269,7 @@
         </div>
         <div class="md:w-1/2 relative">
             <div class="absolute inset-0 bg-orange-900/20 blur-[100px] rounded-full"></div>
-            <!-- Using the referenced image 2 -->
-            <img src="image_2.png" alt="Impact and Vision - Elephant, Tiger, Orangutan" class="relative z-10 w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-700">
-        </div>
-    </section>
-
-    <!-- Collection Section (Improvised) -->
-    <section id="collection" class="py-20 bg-black/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-oswald font-bold uppercase mb-4">Choose Your Guardian</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Each card is minted with a unique serial number. Stock is limited based on the actual remaining population of these magnificent creatures.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1548192746-dd526f154ed9?auto=format&fit=crop&w=600&q=80" alt="Red Panda" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Red Panda</h3>
-                        <p class="text-sm text-red-400 font-medium mb-4">Endangered (approx. 2,500 left)</p>
-                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1571215444007-8b012642eb66?auto=format&fit=crop&w=600&q=80" alt="Sumatran Tiger" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Sumatran Tiger</h3>
-                        <p class="text-sm text-red-400 font-medium mb-4">Critically Endangered (approx. 400 left)</p>
-                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=600&q=80" alt="Asian Elephant" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Asian Elephant</h3>
-                        <p class="text-sm text-red-400 font-medium mb-4">Endangered (Decreasing)</p>
-                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
-                    <div class="h-48 bg-gray-800 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555543162-d280d90899f8?auto=format&fit=crop&w=600&q=80" alt="Bornean Orangutan" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Bornean Orangutan</h3>
-                        <p class="text-sm text-red-400 font-medium mb-4">Critically Endangered</p>
-                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
-                    </div>
-                </div>
-            </div>
+            <img src="image_2.png" alt="Impact and Vision" class="relative z-10 w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-700">
         </div>
     </section>
 
@@ -211,7 +279,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
                 <div class="flex flex-col items-center md:items-start">
                     <div class="flex items-center gap-3 mb-4 text-gray-500">
-                        <i class="fa-solid fa-elephant text-4xl"></i>
+                        <i class="fa-solid fa-leaf text-4xl"></i>
                     </div>
                     <h2 class="font-oswald text-2xl font-bold uppercase tracking-widest text-center md:text-left">
                         They Were <br>Here With Us
