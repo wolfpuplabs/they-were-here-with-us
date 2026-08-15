@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>They Were Here With Us | AR NFC Adoption Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0B130D; /* Very dark forest green */
+            color: #F3F4F6;
+        }
+        
+        h1, h2, h3, .font-oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .text-accent {
+            color: #A3E681; /* Light leaf green */
+        }
+        .bg-accent {
+            background-color: #A3E681;
+        }
+        .bg-dark-green {
+            background-color: #112415;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dark-green/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-elephant text-3xl text-accent"></i>
+                    <span class="font-oswald text-xl font-bold tracking-wider leading-tight uppercase">They Were<br>Here With Us</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-accent transition">The Concept</a>
+                    <a href="#how-it-works" class="text-gray-300 hover:text-accent transition">How it Works</a>
+                    <a href="#collection" class="text-gray-300 hover:text-accent transition">Cards Collection</a>
+                </div>
+                <div>
+                    <a href="#collection" class="bg-accent text-black font-bold py-2 px-6 rounded-full hover:bg-white transition shadow-lg hover:shadow-xl">
+                        Adopt Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2 flex flex-col gap-6 text-center md:text-left">
+            <h1 class="text-6xl md:text-8xl font-bold font-oswald uppercase leading-none text-white shadow-sm">
+                They Were <br>
+                <span class="text-gray-300">Here With Us</span>
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-oswald text-accent uppercase tracking-wide">
+                Adopt. Scan. Connect. Protect.
+            </h2>
+            <p class="text-lg md:text-xl text-gray-400 font-light max-w-lg mx-auto md:mx-0">
+                An interactive NFC + AR adoption card that brings you closer to endangered animals while directly supporting their conservation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-4 justify-center md:justify-start">
+                <a href="#collection" class="bg-accent text-black font-bold py-4 px-8 rounded-full text-lg hover:bg-white transition text-center shadow-[0_0_15px_rgba(163,230,129,0.4)]">
+                    Get Your Card
+                </a>
+                <a href="#how-it-works" class="border-2 border-gray-500 text-white font-bold py-4 px-8 rounded-full text-lg hover:border-accent hover:text-accent transition text-center">
+                    Watch Demo
+                </a>
+            </div>
+        </div>
+        <div class="md:w-1/2 relative">
+            <div class="absolute inset-0 bg-accent/20 blur-[100px] rounded-full"></div>
+            <!-- Using the referenced image 1 -->
+            <img src="image.png" alt="AR NFC Adoption Card with Red Panda" class="relative z-10 w-full h-auto rounded-2xl shadow-2xl border border-gray-700">
+        </div>
+    </section>
+
+    <!-- How It Works (Improvised based on icons) -->
+    <section id="how-it-works" class="py-20 bg-dark-green border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-oswald font-bold mb-16 uppercase text-white">The Journey of Empathy</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                        <i class="fa-solid fa-hand-holding-heart text-4xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">1. Adopt</h3>
+                    <p class="text-gray-400">Purchase a physical NFC-enabled card representing a specific endangered species. 100% of profits go to global wildlife sanctuaries.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                        <i class="fa-solid fa-mobile-screen text-4xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">2. Scan</h3>
+                    <p class="text-gray-400">Tap the premium metal/bamboo card to your smartphone. Our app instantly authenticates your unique adoption serial number.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full border border-accent flex items-center justify-center mb-6 bg-black/30">
+                        <i class="fa-solid fa-shield-cat text-4xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-oswald font-bold mb-4 uppercase">3. Protect</h3>
+                    <p class="text-gray-400">Experience the animal in stunning Augmented Reality right in your room. Track their real-world conservation status and learn how to help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Impact Section -->
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16">
+        <div class="md:w-1/2 flex flex-col gap-6">
+            <h2 class="text-5xl font-oswald font-bold uppercase text-accent mb-2">Impact & Vision</h2>
+            
+            <p class="text-xl text-gray-300 font-light leading-relaxed border-l-4 border-accent pl-6">
+                We envision a world where technology creates empathy, and empathy drives action.
+            </p>
+            
+            <p class="text-lg text-gray-400 mt-4">
+                Every scan is a connection. Every adoption is a step toward saving their future. By bridging the digital and physical worlds, we are giving a voice to those who cannot speak for themselves. 
+            </p>
+
+            <h3 class="text-2xl font-oswald font-bold mt-8 uppercase tracking-wide text-white">
+                Together, let's protect<br>
+                <span class="text-gray-400">They Were Here With Us.</span>
+            </h3>
+        </div>
+        <div class="md:w-1/2 relative">
+            <div class="absolute inset-0 bg-orange-900/20 blur-[100px] rounded-full"></div>
+            <!-- Using the referenced image 2 -->
+            <img src="image_2.png" alt="Impact and Vision - Elephant, Tiger, Orangutan" class="relative z-10 w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-700">
+        </div>
+    </section>
+
+    <!-- Collection Section (Improvised) -->
+    <section id="collection" class="py-20 bg-black/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-oswald font-bold uppercase mb-4">Choose Your Guardian</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Each card is minted with a unique serial number. Stock is limited based on the actual remaining population of these magnificent creatures.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
+                    <div class="h-48 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548192746-dd526f154ed9?auto=format&fit=crop&w=600&q=80" alt="Red Panda" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Red Panda</h3>
+                        <p class="text-sm text-red-400 font-medium mb-4">Endangered (approx. 2,500 left)</p>
+                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
+                    <div class="h-48 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1571215444007-8b012642eb66?auto=format&fit=crop&w=600&q=80" alt="Sumatran Tiger" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Sumatran Tiger</h3>
+                        <p class="text-sm text-red-400 font-medium mb-4">Critically Endangered (approx. 400 left)</p>
+                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
+                    <div class="h-48 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=600&q=80" alt="Asian Elephant" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Asian Elephant</h3>
+                        <p class="text-sm text-red-400 font-medium mb-4">Endangered (Decreasing)</p>
+                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-dark-green rounded-xl overflow-hidden border border-gray-800 hover:border-accent transition group cursor-pointer">
+                    <div class="h-48 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555543162-d280d90899f8?auto=format&fit=crop&w=600&q=80" alt="Bornean Orangutan" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-accent/30">NFC Ready</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-oswald font-bold mb-1 uppercase">Bornean Orangutan</h3>
+                        <p class="text-sm text-red-400 font-medium mb-4">Critically Endangered</p>
+                        <button class="w-full py-2 bg-gray-800 hover:bg-accent hover:text-black font-bold rounded transition">Adopt for $25</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-16 pb-8 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center gap-3 mb-4 text-gray-500">
+                        <i class="fa-solid fa-elephant text-4xl"></i>
+                    </div>
+                    <h2 class="font-oswald text-2xl font-bold uppercase tracking-widest text-center md:text-left">
+                        They Were <br>Here With Us
+                    </h2>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="text-center text-gray-600 text-sm border-t border-gray-900 pt-8">
+                &copy; 2026 They Were Here With Us Conservation Project. All rights reserved. AR & NFC technology powered by empathetic humans.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
