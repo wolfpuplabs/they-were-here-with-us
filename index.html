@@ -319,11 +319,13 @@
         </div>
     </footer>
 
-    <!-- SFX: Ambient Audio Element (Hidden) -->
-    <!-- Note: Using a reliable royalty-free ambient sound from internet archive. You can replace src with your own 'jungle_sfx.mp3' -->
+        <!-- SFX: Ambient Audio Element (Hidden) -->
     <audio id="bg-audio" loop preload="auto">
-        <source src="https://ia800908.us.archive.org/30/items/jungle-ambience/Jungle%20Ambience.mp3" type="audio/mpeg">
+        <!-- Menggunakan file mp3 lokal -->
+        <source src="jungle.mp3" type="audio/mpeg">
     </audio>
+
+
 
     <!-- SFX Toggle Button (Floating) -->
     <button id="sfx-toggle" class="fixed bottom-6 right-6 z-[100] bg-dark-green border-2 border-accent text-accent w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(163,230,129,0.3)] hover:scale-110 hover:bg-accent hover:text-black transition-all duration-300 group">
