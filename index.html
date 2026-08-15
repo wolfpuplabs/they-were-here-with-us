@@ -319,13 +319,11 @@
         </div>
     </footer>
 
-        <!-- SFX: Ambient Audio Element (Hidden) -->
+    <!-- SFX: Ambient Audio Element (Hidden) -->
     <audio id="bg-audio" loop preload="auto">
         <!-- Menggunakan file mp3 lokal -->
         <source src="jungle.mp3" type="audio/mpeg">
     </audio>
-
-
 
     <!-- SFX Toggle Button (Floating) -->
     <button id="sfx-toggle" class="fixed bottom-6 right-6 z-[100] bg-dark-green border-2 border-accent text-accent w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(163,230,129,0.3)] hover:scale-110 hover:bg-accent hover:text-black transition-all duration-300 group">
@@ -395,36 +393,74 @@
                 createParticle();
             }
 
-            // --- 3. AUDIO (SFX) TOGGLE LOGIC ---
+            // --- 3. AUDIO LOGIC & STATE ---
             const audio = document.getElementById('bg-audio');
             const toggleBtn = document.getElementById('sfx-toggle');
             const icon = document.getElementById('sfx-icon');
             let isPlaying = false;
+            let hasInteracted = false; // Flag for first interaction
 
             // Set volume lower so it's ambient, not overwhelming
             audio.volume = 0.3;
 
-            toggleBtn.addEventListener('click', () => {
-                if (isPlaying) {
-                    audio.pause();
-                    icon.classList.replace('fa-volume-up', 'fa-volume-mute');
-                    toggleBtn.classList.remove('bg-accent', 'text-black');
-                    toggleBtn.classList.add('bg-dark-green', 'text-accent');
-                } else {
-                    // Modern browsers return a promise on play()
+            // Function to handle UI updates when audio plays
+            const setAudioPlayingState = () => {
+                isPlaying = true;
+                icon.classList.replace('fa-volume-mute', 'fa-volume-up');
+                toggleBtn.classList.add('bg-accent', 'text-black');
+                toggleBtn.classList.remove('bg-dark-green', 'text-accent');
+            };
+
+            // Function to handle UI updates when audio pauses
+            const setAudioPausedState = () => {
+                isPlaying = false;
+                icon.classList.replace('fa-volume-up', 'fa-volume-mute');
+                toggleBtn.classList.remove('bg-accent', 'text-black');
+                toggleBtn.classList.add('bg-dark-green', 'text-accent');
+            };
+
+            // --- 4. AUTOPLAY WORKAROUND (Play on ANY first interaction) ---
+            const startAudioOnInteraction = () => {
+                if (!hasInteracted && !isPlaying) {
                     const playPromise = audio.play();
                     if (playPromise !== undefined) {
                         playPromise.then(_ => {
-                            icon.classList.replace('fa-volume-mute', 'fa-volume-up');
-                            toggleBtn.classList.add('bg-accent', 'text-black');
-                            toggleBtn.classList.remove('bg-dark-green', 'text-accent');
+                            setAudioPlayingState();
+                            hasInteracted = true; // Mark that user has interacted
+                            
+                            // Remove listeners so it doesn't trigger repeatedly
+                            document.removeEventListener('click', startAudioOnInteraction);
+                            document.removeEventListener('touchstart', startAudioOnInteraction);
                         }).catch(error => {
-                            console.log("Audio playback failed:", error);
-                            alert("Please interact with the page first to enable sound.");
+                            // If still blocked, just wait silently for the next interaction
+                            console.log("Browser masih memblokir audio sampai ada interaksi yang lebih kuat.");
                         });
                     }
                 }
-                isPlaying = !isPlaying;
+            };
+
+            // Pasang pendengar (listener) untuk klik atau tap pertama kali di manapun di layar
+            document.addEventListener('click', startAudioOnInteraction);
+            document.addEventListener('touchstart', startAudioOnInteraction);
+
+            // --- 5. MANUAL TOGGLE BUTTON LOGIC ---
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Mencegah klik tombol ini memicu listener interaksi global di atas
+                hasInteracted = true; // Tandai sudah ada interaksi
+
+                if (isPlaying) {
+                    audio.pause();
+                    setAudioPausedState();
+                } else {
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            setAudioPlayingState();
+                        }).catch(error => {
+                            console.log("Audio playback failed:", error);
+                        });
+                    }
+                }
             });
         });
     </script>
